@@ -1,0 +1,13 @@
+---
+title: '標準3Dモード（基本）'
+linkTitle: '標準3Dモード'
+weight: 14
+---
+
+`標準3Dモード` - 3Dデータで動作するように設計されています。
+タスク作成時にPCDまたはKitty BIN形式のデータを追加すると、このモードが自動的に利用可能になります。
+{{< ilink "/docs/manual/basics/create_an_annotation_task" "詳しく読む" >}}
+
+投影図のサイズを調整することができます。調整するには、投影図間の境界をドラッグしてください。
+
+![](/images/image215_carla_town3.jpg)

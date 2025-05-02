@@ -1,0 +1,66 @@
+---
+title: 'タスクページ'
+linkTitle: 'タスクページ'
+weight: 5
+description: 'タスクページの概要。'
+---
+
+![](/images/image006_detrac.jpg)
+
+タスクページには要素が含まれており、それぞれが個別のタスクに対応しています。作成順にソートされています。
+各要素には、タスク名、プレビュー、進行状況バー、`開く`ボタン、`アクション`メニューが含まれています。
+各ボタンは、`アクション`メニュー内の特定の機能を担当します。
+
+- `タスクデータセットのエクスポート` — アノテーション、またはアノテーションと画像を特定のフォーマットでダウンロードします。
+  詳細は{{< ilink "/docs/manual/advanced/import-datasets" "データセットのエクスポート／インポート" >}}セクションをご覧ください。
+- `アノテーションのアップロード` — 特定のフォーマットでアノテーションをアップロードします。
+  詳細は{{< ilink "/docs/manual/advanced/import-datasets" "データセットのエクスポート／インポート" >}}セクションをご覧ください。
+- `自動アノテーション` — OpenVINOツールキットによる自動アノテーション。
+  利用可能かどうかはCVATインスタンスの構築方法によります。
+- `タスクのバックアップ` — このタスクをzipアーカイブとしてバックアップします。
+  詳しくは{{< ilink "/docs/manual/advanced/backup" "バックアップ" >}}セクションをご覧ください。
+- `プロジェクトへ移動` — タスクをプロジェクトに移動します（プロジェクトに属していないタスクのみ移動可能です）。
+  ラベルの不一致がある場合は、プロジェクトやタスクで必要なラベルを作成または削除できます。
+  一部のタスクラベルは、対象プロジェクトのラベルと一致させることができます。
+- `削除` — タスクを削除します。
+
+左上には検索バーがあり、担当者名やタスク名などでタスクを検索できます。
+右上には[ソート][sorting]、[クイックフィルタ][quick-filters]、およびフィルタがあります。
+
+## フィルタ
+
+> フィルタを適用すると、[クイックフィルタ][quick-filters]が無効になります。
+
+フィルタはアノテーション用フィルタと同様に機能し、
+[プロパティ](#supported-properties-for-tasks-list)、[演算子][operators]、値からルールを作成し、[グループ][groups]へまとめることができます。
+詳細は[フィルタセクション][create-filter]をご覧ください。
+[日付と時刻の選択][data-and-time]についてもご参照ください。
+
+すべてのフィルタをクリアするには`フィルタをクリア`ボタンを押してください。
+
+### タスクリストでサポートされているプロパティ
+
+| プロパティ      | サポートされている値                              | 説明                                      |
+| -------------- | -------------------------------------------- | ----------------------------------------- |
+| `次元`         | `2D`または`3D`                                 | データフォーマットによる <br>（詳細は{{< ilink "/docs/manual/basics/create_an_annotation_task" "アノテーションタスクの作成" >}}参照） |
+| `ステータス`   | `annotation`、`validation`、または`completed`    |                                           |
+| `データ`       | `video`、`images`                              | データフォーマットによる <br>（詳細は{{< ilink "/docs/manual/basics/create_an_annotation_task" "アノテーションタスクの作成" >}}参照） |
+| `サブセット`   | `test`、`train`、`validation`またはカスタムサブセット | [詳細はこちら][subset]                     |
+| `担当者`       | ユーザー名                                     | 担当者はプロジェクト、タスク、ジョブを担当するユーザーです。<br>（タスクページで指定） |
+| `所有者`       | ユーザー名                                     | プロジェクト、タスク、ジョブの所有ユーザー |
+| `最終更新`     | 最終編集日時（または値の範囲）                  | 日付は`dd.MM.yyyy HH:mm`形式で入力するか、<br>入力欄をクリックして表示されるウィンドウで日付を選択可能 |
+| `ID`           | ジョブIDの番号または範囲                        |                                           |
+| `プロジェクトID`| プロジェクトIDの番号または範囲                  |                                           |
+| `名前`         | 名前                                           | タスクページではタスク名、<br>プロジェクトページではプロジェクト名 |
+| `プロジェクト名`| プロジェクト名                                 | プロジェクト作成時に指定、<br>（{{< ilink "/docs/manual/advanced/projects" "プロジェクトセクション" >}}で変更可能） |
+
+---
+
+`開く`ボタンを押すと{{< ilink "/docs/manual/basics/task-details" "タスク詳細" >}}へ移動します。
+
+[create-filter]: /docs/manual/advanced/filter/#create-a-filter
+[operators]: /docs/manual/advanced/filter/#supported-operators-for-properties
+[groups]: /docs/manual/advanced/filter/#groups
+[data-and-time]: /docs/manual/advanced/filter#date-and-time-selection
+[sorting]: /docs/manual/advanced/filter/#sort-by
+[quick-filters]: /docs/manual/advanced/filter/#quick-filters

@@ -1,0 +1,78 @@
+---
+title: 'COCO'
+linkTitle: 'COCO'
+weight: 5
+description: 'COCOフォーマットでのデータのエクスポートとインポート方法'
+---
+
+COCOデータセットは広く使われている機械学習構造であり、物体識別や画像セグメンテーションのタスクに不可欠です。
+このフォーマットは、バウンディングボックスやポリゴンによる画像アノテーションを用いるプロジェクトに対応しています。
+
+詳細は以下を参照してください：
+
+- [COCO Object Detection サイト](http://cocodataset.org/#format-data)
+- [フォーマット仕様](https://openvinotoolkit.github.io/datumaro/stable/docs/data-formats/formats/coco.html)
+- [データセット例](https://github.com/cvat-ai/datumaro/tree/v0.3/tests/assets/coco_dataset)
+
+## COCOエクスポート
+
+画像および動画のエクスポートについて：
+
+- 対応するアノテーション：バウンディングボックス、ポリゴン
+- 属性:
+  - `is_crowd` これはチェックボックスまたは整数（0または1の値）で指定できます。インスタンス（または物体のグループ）が`segmentation`フィールドにRLEエンコードされたマスクを含むべきことを示します。グループ内のすべての形状は1つの大きなマスクに統合され、最大の形状が物体グループ全体のプロパティを決定します。
+  - `score`: この数値フィールドはアノテーションの`score`を表します。
+  - 任意の属性: これらはアノテーションの`attributes`セクションに格納されます。
+- トラック: 非対応
+
+ダウンロードされたファイルは以下の構造を持つ.zipアーカイブです：
+
+```
+archive.zip/
+├── images/
+│   ├── train/
+│   │   ├── <image_name1.ext>
+│   │   ├── <image_name2.ext>
+│   │   └── ...
+│   └── val/
+│       ├── <image_name1.ext>
+│       ├── <image_name2.ext>
+│       └── ...
+└── annotations/
+   ├── <task>_<subset_name>.json
+   └── ...
+```
+
+プロジェクトからデータセットをエクスポートする場合、サブセット名はプロジェクト内で使用されているものと同じになります。
+そうでない場合は、全データセット情報を格納する単一のデフォルトサブセットが作成されます。
+<task> 部分は、`instances`、`panoptic`、`image_info`、`labels`、`captions`、`stuff`など、特定のCOCOタスクのいずれかと一致します。
+
+## COCOインポート
+
+アップロード形式：単一の展開済み`*.json`または上記、もしくは
+[こちら](https://openvinotoolkit.github.io/datumaro/latest/docs/data-formats/formats/coco.html#import-coco-dataset)
+で説明されている構造のzipアーカイブ（画像なし）です。
+
+- 対応アノテーション: ポリゴン、長方形（`segmentation`フィールドが空の場合）
+- 対応タスク: `instances`、`person_keypoints`（セグメンテーションのみインポートされます）、`panoptic`
+
+## MS COCOデータセットからタスクを作成する方法
+
+1. [MS COCOデータセット](https://openvinotoolkit.github.io/datumaro/latest/docs/data-formats/formats/coco.html#import-coco-dataset)をダウンロードします。
+
+   例：`val images`および`instances`アノテーション
+
+2. 以下のラベルでCVATタスクを作成します：
+
+   ```bash
+   person bicycle car motorcycle airplane bus train truck boat "traffic light" "fire hydrant" "stop sign" "parking meter" bench bird cat dog horse sheep cow elephant bear zebra giraffe backpack umbrella handbag tie suitcase frisbee skis snowboard "sports ball" kite "baseball bat" "baseball glove" skateboard surfboard "tennis racket" bottle "wine glass" cup fork knife spoon bowl banana apple sandwich orange broccoli carrot "hot dog" pizza donut cake chair couch "potted plant" bed "dining table" toilet tv laptop mouse remote keyboard "cell phone" microwave oven toaster sink refrigerator book clock vase scissors "teddy bear" "hair drier" toothbrush
+   ```
+
+3. データとして`val2017.zip`を選択します
+   （詳細は{{< ilink "/docs/manual/basics/create_an_annotation_task" "アノテーションタスクの作成" >}}ガイドを参照）
+
+4. `annotations_trainval2017.zip`を展開します
+
+5. `アノテーションをアップロード`ボタンをクリックし、
+   `COCO 1.1`を選択、`instances_val2017.json`
+   アノテーションファイルを選択します。処理には時間がかかる場合があります。

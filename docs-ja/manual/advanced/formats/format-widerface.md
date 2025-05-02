@@ -1,0 +1,48 @@
+---
+title: 'Wider Face'
+linkTitle: 'Wider Face'
+weight: 9
+description: 'Wider Faceフォーマットでのデータのエクスポートとインポート方法'
+---
+
+WIDER Faceデータセットは、顔検出タスクで広く使用されています。
+物体検出や特に顔検出のための多くの人気モデルが、
+このデータセットでベンチマークやデプロイメントのためにトレーニングされています。
+
+詳細については、以下を参照してください:
+
+- [WIDER Face仕様](http://shuoyang1213.me/WIDERFACE/)
+- [データセット例](https://github.com/cvat-ai/datumaro/tree/v0.3/tests/assets/widerface_dataset)
+
+## WIDER Faceエクスポート
+
+画像のエクスポートについて:
+
+- 対応アノテーション: バウンディングボックス（属性付き）、タグ
+- 属性:
+  - `blur`, `expression`, `illumination`, `pose`, `invalid`
+  - `occluded`（アノテーションプロパティおよび属性の両方）
+- トラック: 非対応
+
+ダウンロードされるファイルは、以下の構造の.zipアーカイブです:
+
+```bash
+taskname.zip/
+├── labels.txt # 任意
+├── wider_face_split/
+│   └── wider_face_<any_subset_name>_bbx_gt.txt
+└── WIDER_<any_subset_name>/
+    └── images/
+        ├── 0--label0/
+        │   └── 0_label0_image1.jpg
+        └── 1--label1/
+            └── 1_label1_image2.jpg
+```
+
+## WIDER Faceインポート
+
+アップロードされるファイル: 上記構造のzipアーカイブ
+
+- 対応アノテーション: 長方形（属性付き）、ラベル
+- 対応属性:
+  - `blur`, `expression`, `illumination`, `occluded`, `pose`, `invalid`

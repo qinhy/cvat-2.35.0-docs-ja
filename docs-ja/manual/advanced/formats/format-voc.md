@@ -1,0 +1,107 @@
+---
+title: 'Pascal VOC'
+linkTitle: 'Pascal VOC'
+weight: 6
+description: 'Pascal VOCフォーマットでのデータのエクスポートとインポート方法'
+---
+
+Pascal VOC（Visual Object Classes）フォーマットは、
+物体分類および検出のために確立された初期のベンチマークの1つであり、
+物体クラス認識のための標準化された画像データセットを提供します。
+
+エクスポートデータフォーマットはXMLベースであり、コンピュータビジョンタスクで広く採用されています。
+
+詳細は以下を参照してください。
+
+- [Pascal VOC](http://host.robots.ox.ac.uk/pascal/VOC/)
+- [フォーマット仕様](http://host.robots.ox.ac.uk/pascal/VOC/voc2012/devkit_doc.pdf)
+- [データセット例](https://github.com/cvat-ai/datumaro/tree/v0.3/tests/assets/voc_dataset)
+
+## Pascal VOCエクスポート
+
+画像をエクスポートする場合：
+
+- サポートされているアノテーション：バウンディングボックス（検出）、
+  タグ（分類）、ポリゴン（セグメンテーション）
+- 属性:
+  - `occluded`はUIオプションおよび個別の属性として対応。
+  - `truncated`と`difficult`は各ラベルで`checkbox`として定義する必要があります。
+  - XMLファイルの`attributes`セクションには任意の属性が記述可能です。
+- トラック：未対応。
+
+ダウンロードされるファイルは、以下の構造を持つ.zipアーカイブです。
+
+```bash
+taskname.zip/
+├── JPEGImages/
+│   ├── <image_name1>.jpg
+│   ├── <image_name2>.jpg
+│   └── <image_nameN>.jpg
+├── Annotations/
+│   ├── <image_name1>.xml
+│   ├── <image_name2>.xml
+│   └── <image_nameN>.xml
+├── ImageSets/
+│   └── Main/
+│       └── default.txt
+└── labelmap.txt
+
+# labelmap.txt
+# label : color_rgb : 'body' parts : actions
+background:::
+aeroplane:::
+bicycle:::
+bird:::
+```
+
+## Pascal VOCインポート
+
+サポートされる属性: アクション属性（インポートのみ対応、`checkbox`として定義する必要あり）
+
+アップロードファイル：上記で示した構造、または以下のような.zipアーカイブ
+
+```bash
+taskname.zip/
+├── <image_name1>.xml
+├── <image_name2>.xml
+└── <image_nameN>.xml
+```
+
+CVATがアノテーション`.xml`ファイル（`filename`タグ、例：
+`<filename>2008_004457.jpg</filename>`）から
+フレーム名とファイル名を一致させられる必要があります。
+
+2つの方法があります：
+
+1. アノテーション`.xml`のフレーム名とファイル名が完全一致する場合
+   （画像または画像アーカイブからタスクを作成した場合）。
+
+1. フレーム番号で一致させる場合。ファイル名は`<number>.jpg`
+   または`frame_000000.jpg`である必要があります。これは動画からタスクを作成した場合に使用します。
+
+## Pascal VOCデータセットからタスクを作成する方法
+
+1. Pascal VOCデータセットをダウンロードします
+   （[PASCAL VOC公式サイト](http://host.robots.ox.ac.uk/pascal/VOC/)からダウンロード可能）
+
+1. 以下のラベルでCVATタスクを作成します：
+
+   ```bash
+   aeroplane bicycle bird boat bottle bus car cat chair cow diningtable
+   dog horse motorbike person pottedplant sheep sofa train tvmonitor
+   ```
+
+   これらのラベルに
+   `~checkbox=difficult:false ~checkbox=truncated:false`
+   属性を追加することで利用可能です。
+
+   興味のある画像ファイルを選択します
+   （詳細は{{< ilink "/docs/manual/basics/create_an_annotation_task" "アノテーションタスクの作成" >}}ガイドを参照）
+
+1. 対応するアノテーションファイルをzipにまとめます
+
+1. `アノテーションのアップロード`ボタンをクリックし、`Pascal VOC ZIP 1.1`
+   を選択します。
+
+   前のステップで作成したアノテーションのzipファイルを選択してください。
+   しばらく時間がかかる場合があります。

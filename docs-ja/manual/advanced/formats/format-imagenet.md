@@ -1,0 +1,49 @@
+---
+title: 'ImageNet'
+linkTitle: 'ImageNet'
+weight: 9
+description: 'ImageNet形式でのデータのエクスポートとインポート方法'
+---
+
+ImageNetは、画像分類、物体検出、セグメンテーションなど、さまざまなコンピュータビジョンタスクで一般的に使用されています。
+
+さまざまな機械学習モデルの学習やベンチマークにおいて、広く認知され利用されています。
+
+詳細については、以下を参照してください。
+
+- [ImageNet サイト](http://www.image-net.org)
+- [データセット例](https://github.com/cvat-ai/datumaro/tree/v0.3/tests/assets/imagenet_dataset)
+
+## ImageNetエクスポート
+
+画像のエクスポートについて：
+
+- 対応するアノテーション：タグ
+- 属性：非対応
+- トラック：非対応
+
+ダウンロードされるファイルは、以下の構造を持つ.zipアーカイブです。
+
+```bash
+# 画像を保存する場合:
+taskname.zip/
+├── label1/
+|   ├── label1_image1.jpg
+|   └── label1_image2.jpg
+└── label2/
+    ├── label2_image1.jpg
+    ├── label2_image3.jpg
+    └── label2_image4.jpg
+
+# アノテーションのみを保持する場合:
+taskname.zip/
+├── <any_subset_name>.txt
+└── synsets.txt
+
+```
+
+## ImageNetインポート
+
+アップロードするファイル：上記構造のzipアーカイブ
+
+- 対応するアノテーション：ラベル

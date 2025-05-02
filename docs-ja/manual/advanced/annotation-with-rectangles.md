@@ -1,0 +1,32 @@
+---
+title: '長方形によるアノテーション'
+linkTitle: '長方形によるアノテーション'
+weight: 7
+---
+
+長方形を使ったアノテーションについて詳しく知りたい場合は、以下のセクションを参照してください。
+- {{< ilink "/docs/manual/basics/shape-mode-basics" "シェイプモード（基本）" >}}
+- {{< ilink "/docs/manual/basics/track-mode-basics" "トラックモード（基本）" >}}
+- {{< ilink "/docs/manual/advanced/shape-mode-advanced" "シェイプモード（応用）" >}}
+- {{< ilink "/docs/manual/advanced/track-mode-advanced" "トラックモード（応用）" >}}
+
+## 回転する長方形
+
+長方形を回転させるには、`回転ポイント`をドラッグします。回転は長方形の中心を軸に行われます。
+固定角度（15度の倍数）で回転させたい場合は、`shift`を押しながら操作してください。回転中は回転角度が表示されます。
+
+![](/images/image230.jpg)
+
+## 4点での長方形アノテーション
+
+これは効率的なバウンディングボックスアノテーション手法であり、
+[こちら](https://arxiv.org/pdf/1708.02750.pdf)で提案されています。
+開始する前に、4点による描画方法が選択されていることを確認してください。
+
+![](/images/image134.jpg)
+
+描画モードに入るには`Shape`または`Track`を押します。対象物の上端、下端、最も左、最も右の物理的な4点をクリックします。
+4点目をクリックした直後に描画が自動的に完了します。
+編集をキャンセルする場合は`Esc`を押してください。
+
+![](/images/gif016_mapillary_vistas.gif)
