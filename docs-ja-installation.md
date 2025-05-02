@@ -558,10 +558,10 @@ docker compose -f docker-compose.yml -f docker-compose.external_db.yml up -d
       "deb [arch=amd64] https://mirrors.aliyun.com/docker-ce/linux/ubuntu \
       $(lsb_release -cs) stable"
     ```
-    *(Note: Replaced download.docker.com with a common Chinese mirror, aliyun. Adjust if needed.)*
+    *(注: download.docker.comを一般的な中国のミラーであるaliyunに置き換えました。必要に応じて調整してください。)*
 
 -   高速化ソース`google.com`を置き換えるために実行：
-    *(Note: A direct replacement for google.com GPG key might be tricky or depend on local network setup. Often, package managers configured with Chinese mirrors handle this implicitly. If direct access to dl-ssl.google.com is blocked, users might need to find an alternative way to get the key or rely on mirrors that cache it. The original command is kept here for reference, but users in China might need to adapt.)*
+    *(注: google.com GPGキーの直接的な代替は、ローカルネットワーク設定によっては難しい場合があります。多くの場合、中国のミラーで設定されたパッケージマネージャーはこれを暗黙的に処理します。dl-ssl.google.comへの直接アクセスがブロックされている場合、ユーザーはキーを取得する別の方法を見つけるか、キーをキャッシュしているミラーを利用する必要があるかもしれません。元のコマンドは参考のために残していますが、中国のユーザーは状況に応じて対応する必要があります。)*
     ```shell
     curl https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
     ```

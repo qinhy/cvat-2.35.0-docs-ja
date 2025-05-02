@@ -7,7 +7,7 @@ CVATを使ってデータのアノテーションをより速く、より良く�
 2. これらがどのようにモデルの学習プロセスを加速できるのか
 3. さらに詳しく使い方を学ぶためのリソース
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/GgKIEFhd1CY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+[![CVAT and Datumaro Introduction](https://img.youtube.com/vi/GgKIEFhd1CY/0.jpg)](https://www.youtube.com/watch?v=GgKIEFhd1CY)
 
 # CVAT概要
 
@@ -179,7 +179,7 @@ CVATを使ったアノテーションプロセスを始めるための総合ガ�
 
 以下の図で全体的なプロセスを説明しています：
 
-[![ワークフロー図](/images/cvat-workflow-bpmn.png)](/images/cvat-workflow-bpmn.png)
+[![ワークフロー図](./images/cvat-workflow-bpmn.png)](./images/cvat-workflow-bpmn.png)
 
 ## 組織向け導入手順
 
@@ -204,4 +204,4 @@ CVATを使ったアノテーションプロセスを始めるための総合ガ�
 
 ## 動画チュートリアル
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/uI2OEoR08ME?si=0OTHPwgxGx30Gax7" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+[![完全ワークフローガイド動画チュートリアル](https://img.youtube.com/vi/uI2OEoR08ME/0.jpg)](https://www.youtube.com/watch?v=uI2OEoR08ME)
